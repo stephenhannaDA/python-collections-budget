@@ -21,15 +21,15 @@ class BudgetList:
 		return len(self.expenses) + len(self.overages)
 
 	def __iter__(self):
-		iter(self.expenses)
+		self.iter_e = iter(self.expenses)
 		self.iter_o = iter(self.overages)
 		return self
 
 	def __next__(self):
 		try:
-			return __next__(self.iter_e)
+			return self.iter_e.__next__()
 		except StopIteration as stop:
-			return __next__(self.iter_o)
+			return self.iter_o.__next__()
 
 
 def main():
@@ -49,7 +49,7 @@ def main():
 
 	labels = ['Expenses', 'Overages', 'Budget']
 
-	values = [myBudgetList, sum_expenses, sum_overages, budget]
+	values = [myBudgetList.sum_expenses, myBudgetList.sum_overages, myBudgetList.budget]
 
 	ax.bar(labels, values, color=['green', 'red', 'blue'])
 
